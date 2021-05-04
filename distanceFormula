@@ -1,0 +1,46 @@
+import math as m
+import re
+print ("coordinate syntax: x1,y1 x2,y2")
+coordinates = str(input("Enter coordinates: "))
+print ("Formula used: d = sqrt[(x2 - x1)^2 + (y2 - y1)^2]")
+
+print (coordinates.split())
+#   coordinates[0] = x1
+#   coordinates[2] = y1
+#   coordinates[4] = x2
+#   coordinates[6] = y2
+
+if "-" in coordinates:
+    print (re.findall(r'-?\d+|[a-z]+|\W+?', coordinates))
+    coordNegatives = re.findall(r'-?\d+|[a-z]+|\W+?', coordinates)
+    print (coordNegatives[0])
+
+if "-" not in coordinates:
+    xVal = int(coordinates[4]) - int(coordinates[0])
+    yVal = int(coordinates[6]) - int(coordinates[2])
+    xValSqrd = xVal**2
+    yValSqrd = yVal**2
+    print (yVal)
+    xyVal = (xValSqrd - yValSqrd)
+    print ("x"+str(xValSqrd))
+    print ("y"+str(yValSqrd))
+    print (xyVal)
+    xyValSqrt = m.sqrt(xyVal)
+    print (xyVal)
+    print (xyValSqrt)
+else:
+    try:
+        xVal = int(coordinates[5]) - int(coordinates[1])
+        yVal = int(coordinates[7]) - int(coordinates[3])
+        xValSqrd = xVal**2
+        yValSqrd = yVal**2
+        print (yVal)
+        xyVal = (xValSqrd - yValSqrd)
+        print ("x"+str(xValSqrd))
+        print ("y"+str(yValSqrd))
+        print (xyVal)
+        xyValSqrt = m.sqrt(xyVal)
+        print (xyVal)
+        print (xyValSqrt)
+    except:
+        print("get betr coords")
