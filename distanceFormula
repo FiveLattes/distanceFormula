@@ -1,46 +1,66 @@
 import math as m
-import re
-print ("coordinate syntax: x1,y1 x2,y2")
-coordinates = str(input("Enter coordinates: "))
-print ("Formula used: d = sqrt[(x2 - x1)^2 + (y2 - y1)^2]")
 
-print (coordinates.split())
-#   coordinates[0] = x1
-#   coordinates[2] = y1
-#   coordinates[4] = x2
-#   coordinates[6] = y2
+#   establishes (null) for use after multiple loops
+null = 0
 
-if "-" in coordinates:
-    print (re.findall(r'-?\d+|[a-z]+|\W+?', coordinates))
-    coordNegatives = re.findall(r'-?\d+|[a-z]+|\W+?', coordinates)
-    print (coordNegatives[0])
+#   display syntax and establish loop
+print ("coordinate syntax: x1 y1 x2 y2")
+while True:
+    
+    #   receive coordinates
+    coordinates = str(input("Enter coordinates: "))
+    #   [0] = x1 [1] = y1 [2] = x2 [3] = y2
+    
+    #   if statement allows a way to exit the program with "exit"
+    if coordinates != "exit":
+        
+        #   display formula
+        print ("Formula used: d = sqrt[(x2 - x1)^2 + (y2 - y1)^2]")
+        #   displays coordinates as a list and defines a new variable with all attributes of input
+        print (coordinates.split())
+        coordinates = coordinates.split()
 
-if "-" not in coordinates:
-    xVal = int(coordinates[4]) - int(coordinates[0])
-    yVal = int(coordinates[6]) - int(coordinates[2])
-    xValSqrd = xVal**2
-    yValSqrd = yVal**2
-    print (yVal)
-    xyVal = (xValSqrd - yValSqrd)
-    print ("x"+str(xValSqrd))
-    print ("y"+str(yValSqrd))
-    print (xyVal)
-    xyValSqrt = m.sqrt(xyVal)
-    print (xyVal)
-    print (xyValSqrt)
-else:
-    try:
-        xVal = int(coordinates[5]) - int(coordinates[1])
-        yVal = int(coordinates[7]) - int(coordinates[3])
+        #   assigns coordinates to variables to change from str to int
+        coord1 = coordinates[0]
+        coord2 = coordinates[1]
+        coord3 = coordinates[2]
+        coord4 = coordinates[3]
+        print ("coordinate x1 = " + str(coord1))
+        print ("coordinate y1 = " + str(coord2))
+        print ("coordinate x2 = " + str(coord3))
+        print ("coordinate y2 = " + str(coord4))
+
+        #   commits and prints (x2 - x1)[xVal]
+        xVal = (int(coord3) - int(coord1))
+        print ("x2 - x1 = " + str(xVal))
+
+        #   commits and prints (y2 - y1)[yVal]
+        yVal = (int(coord4) - int(coord2))
+        print ("y2 - y1 = " + str(yVal))
+
+        #   commits and prints (xVal)^2 [xValSqrd]
         xValSqrd = xVal**2
+        print (str(xVal) + "^2 = " + str(xValSqrd))
+
+        #   commits and prints (yVal)^2 [xValSqrd]
         yValSqrd = yVal**2
-        print (yVal)
-        xyVal = (xValSqrd - yValSqrd)
-        print ("x"+str(xValSqrd))
-        print ("y"+str(yValSqrd))
-        print (xyVal)
-        xyValSqrt = m.sqrt(xyVal)
-        print (xyVal)
-        print (xyValSqrt)
-    except:
-        print("get betr coords")
+        print (str(yVal) + "^2 = " + str(yValSqrd))
+
+        #   commits and prints (xValSqrd) + (yValSqrd) [xyVal]
+        xyVal = (xValSqrd + yValSqrd)
+        print (str(xValSqrd) + " + " + str(yValSqrd) + " = " + str(xyVal))
+
+        #   commits sqrt(xyVal) [xySqrt] and prints the concluding statement 
+        xySqrt = m.sqrt(xyVal)
+        print (" ")
+        print ("The distance between " + str(coord1) + "," + str(coord2) + " " + str(coord3) + "," + str(coord4) + " is " + str(xySqrt))
+        print (" ")
+
+        #   presents popup every three uses to show how to exit program
+        null += 1
+        if null % 3 == 0:
+            print (" ")
+            print ("type 'exit' to close program")
+    #   checks if input is "exit" and quits program if so
+    else:
+        exit()
